@@ -1,27 +1,11 @@
-// toglogchiin eeljiig hadgalah huwisagch, 1r toglogchiig 0, 2r toglogchiig 1 gej temdeglii
-var activePlayer = 0;
-
-// toglogchdiin onoog tsugluulah huwissagch
-var scores = [0, 0];
-
-
-// eeljiin onoog hadgalah huwisagch
-var roundScore = 0;
-
-
-// shoo buuh bolgondoo ali talaaraa buuhiig hadgalah huwisagch
-
-// var  diceNumber = Math.floor(Math.random() * 6) + 1; 
-
-document.getElementById('score-0').textContent = 0;
-document.getElementById('score-1').textContent = 0;
-document.getElementById('score-1').textContent = 0; 
-document.getElementById("current-0").textContent = 0;
-document.getElementById("current-1").textContent = 0;
-
+// togloomiin global huwisagchdiig zarlay
+var activePlayer;
+var scores;
+var scores;
+var roundScore;
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
 
+initGame();
 // Shoog shideh event listener
 document.querySelector(".btn-roll").addEventListener("click", function (){
 
@@ -42,26 +26,7 @@ document.querySelector(".btn-roll").addEventListener("click", function (){
     }
     else{
         // 1 buusan tul toglogchiin eeljiig ene hesegt solij ugnu.
-
-        // ene toglogchiin eeljindee tsugluulsan onoog 0 bolgo
-        document.getElementById("current-" + activePlayer).textContent = 0;
-
-        // herew idewhtei toglogch n 0 baiwl idewhtei toglogchiig 1 bolgo
-        // ugui bol 0 bolgo
-        roundScore = 0;
-        activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-
-        // ulaan tsegiig haij oloh
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        // Shoog tur alga bolgoh
-        diceDom.style.display = 'none';
-
-        // if(activePlayer === 0){
-        //     activePlayer = 1;
-        // }
-        // else activePlayer = 0;
+        switchToNextPlayer();
     }
 });
 // hold towchnii event listener
@@ -69,27 +34,63 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
         // ug toglogchiin tsugluulsan eeljnii onoog global onoon deer n nemj ugnu
         scores[activePlayer] += roundScore;
 
+        // delgets deer onoog n uurchluh
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
-        // eeljiin onoog n 0 bolgono
-        document.getElementById('current-' + activePlayer).textContent = 0;
-        roundScore = 0;
-
-        // toglogchiin eeljiig solino
-        // ene toglogchiin eeljindee tsugluulsan onoog 0 bolgo
-        document.getElementById("current-" + activePlayer).textContent = 0;
-
-        // herew idewhtei toglogch n 0 baiwl idewhtei toglogchiig 1 bolgo
-        // ugui bol 0 bolgo
-        roundScore = 0;
-        activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-
-        // ulaan tsegiig haij oloh
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        // Shoog tur alga bolgoh
-        diceDom.style.display = 'none';
-        
-
+        // ug toglogch hojson esehiig shalgah
+        if(scores[activePlayer] > 20){
+            // winner gsn textiig nernii orond gargana
+            document.getElementById('name-' + activePlayer).textContent = "WINNER!!!";
+        }
+        else{
+            // toglogchiin eeljiig solino
+            switchToNextPlayer();
+        }
 });
+
+// ene function n eeljiig daraachiin toglogch ruu shiljuuldeg
+function switchToNextPlayer(){
+    document.getElementById("current-" + activePlayer).textContent = 0;
+
+    // herew idewhtei toglogch n 0 baiwl idewhtei toglogchiig 1 bolgo
+    // ugui bol 0 bolgo
+    roundScore = 0;
+    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+
+    // ulaan tsegiig haij oloh
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    // Shoog tur alga bolgoh
+    diceDom.style.display = 'none';
+}
+
+document.querySelector('.btn-new').addEventListener('click', function(){
+    initGame();
+});
+
+
+function initGame(){
+    // toglogchiin eeljiig hadgalah huwisagch, 1r toglogchiig 0, 2r toglogchiig 1 gej temdeglii
+    activePlayer = 0;
+
+    // toglogchdiin onoog tsugluulah huwissagch
+    scores = [0, 0];
+
+    // eeljiin onoog hadgalah huwisagch
+    roundScore = 0;
+    
+    // shoo buuh bolgondoo ali talaaraa buuhiig hadgalah huwisagch
+
+    document.getElementById('score-0').textContent = 0;
+    document.getElementById('score-1').textContent = 0;
+    document.getElementById('score-1').textContent = 0; 
+    document.getElementById("current-0").textContent = 0;
+    document.getElementById("current-1").textContent = 0;
+
+    diceDom.style.display = "none";
+    
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+
+}
