@@ -64,3 +64,32 @@ document.querySelector(".btn-roll").addEventListener("click", function (){
         // else activePlayer = 0;
     }
 });
+// hold towchnii event listener
+document.querySelector('.btn-hold').addEventListener('click', function(){
+        // ug toglogchiin tsugluulsan eeljnii onoog global onoon deer n nemj ugnu
+        scores[activePlayer] += roundScore;
+
+        document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+
+        // eeljiin onoog n 0 bolgono
+        document.getElementById('current-' + activePlayer).textContent = 0;
+        roundScore = 0;
+
+        // toglogchiin eeljiig solino
+        // ene toglogchiin eeljindee tsugluulsan onoog 0 bolgo
+        document.getElementById("current-" + activePlayer).textContent = 0;
+
+        // herew idewhtei toglogch n 0 baiwl idewhtei toglogchiig 1 bolgo
+        // ugui bol 0 bolgo
+        roundScore = 0;
+        activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+
+        // ulaan tsegiig haij oloh
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+
+        // Shoog tur alga bolgoh
+        diceDom.style.display = 'none';
+        
+
+});
