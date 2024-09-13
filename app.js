@@ -26,5 +26,4 @@ document.querySelector(".btn-roll").addEventListener("click", function (){
     var  diceNumber = Math.floor(Math.random() * 6) + 1; 
     diceDom.style.display = "block";
     diceDom.src = 'dice-'  + diceNumber + '.png';
-    // alert("shoo buulaa : " + diceNumber);
 });
