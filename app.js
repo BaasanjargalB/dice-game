@@ -3,7 +3,6 @@
 var isNewGame;
 var activePlayer;
 var scores;
-var scores;
 var roundScore;
 var diceDom = document.querySelector(".dice");
 
@@ -31,7 +30,7 @@ if(isNewGame){
     }
 }
 else{
-    alert('togloom duussan bn. NEw game towchiig darj ehelne uu');
+    alert('togloom duussan bn. New game towchiig darj ehelne uu');
 }
 
 });
